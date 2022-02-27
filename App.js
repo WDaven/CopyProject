@@ -11,14 +11,14 @@ export default function App() {
     <NavigationContainer>
         <Tab.Navigator screenOptions={{ headerShown: false }}>
             <Tab.Screen
-                name="Home"
+                name="Search"
                 component={HomeScreen}
-                options={{ tabBarIcon: makeIconRender("home") }}
+                options={{ tabBarIcon: makeIconRender("magnify") }}
             />
             <Tab.Screen
-                name="Settings"
+                name="Favorites"
                 component={SettingsScreen}
-                options={{ tabBarIcon: makeIconRender("cog") }}
+                options={{ tabBarIcon: makeIconRender("heart-outline") }}
             />
         </Tab.Navigator>
     </NavigationContainer>
