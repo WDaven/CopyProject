@@ -13,12 +13,12 @@ export default function App() {
             <Tab.Screen
                 name="Search"
                 component={HomeScreen}
-                options={{ tabBarIcon: makeIconRender("magnify") }}
+                options={{ tabBarIcon: makeIconRender("magnify"), headerShown: false }}
             />
             <Tab.Screen
                 name="Favorites"
                 component={SettingsScreen}
-                options={{ tabBarIcon: makeIconRender("heart-outline") }}
+                options={{ tabBarIcon: makeIconRender("heart-outline"), headerShown: false }}
             />
         </Tab.Navigator>
     </NavigationContainer>
