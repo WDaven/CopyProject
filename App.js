@@ -9,7 +9,7 @@ const Tab = createBottomTabNavigator();
 export default function App() {
   return (
     <NavigationContainer>
-        <Tab.Navigator screenOptions={{ headerShown: false }}>
+        <Tab.Navigator screenOptions={{ headerShown: false, tabBarActiveTintColor: '#e91e63', }}> // change color of active tab here
             <Tab.Screen
                 name="Search"
                 component={HomeScreen}
@@ -30,3 +30,4 @@ function makeIconRender(name) {
         <MaterialCommunityIcons name={name} color={color} size={size} />
     );
 }
+
