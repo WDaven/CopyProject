@@ -6,10 +6,11 @@ import SettingsScreen from "./screens/Settings";
 
 const Tab = createBottomTabNavigator();
 
+// highlight color in activetintcolor default is 3880FF
 export default function App() {
   return (
     <NavigationContainer>
-        <Tab.Navigator screenOptions={{ headerShown: false, tabBarActiveTintColor: '#e91e63', }}> // change color of active tab here
+        <Tab.Navigator screenOptions={{ headerShown: false, tabBarActiveTintColor: '#e91e63', }}>
             <Tab.Screen
                 name="Search"
                 component={HomeScreen}
