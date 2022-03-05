@@ -4,6 +4,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NativeBaseProvider } from "native-base";
 import HomeScreen from "./screens/HomeMap";
 import SettingsScreen from "./screens/Favorites";
+import FilterScreen from "./screens/FilterScreen";
 
 const Tab = createBottomTabNavigator();
 
@@ -21,6 +22,11 @@ export default function App() {
                 <Tab.Screen
                     name="Favorites"
                     component={SettingsScreen}
+                    options={{ tabBarIcon: makeIconRender("heart-outline"), headerShown: false }}
+                />
+                <Tab.Screen
+                    name="FilterScreen"
+                    component={FilterScreen}
                     options={{ tabBarIcon: makeIconRender("heart-outline"), headerShown: false }}
                 />
             </Tab.Navigator>

@@ -1,36 +1,50 @@
-import { Button, Actionsheet, useDisclose, Text, Box, Center, NativeBaseProvider } from 'native-base';
-export default function FilterScreen() {
-    return (
-        <NativeBaseProvider>
+import React from "react";
+import { Button, Modal, FormControl, Input, Center, NativeBaseProvider } from "native-base";
+import { useState } from "react";
+
+const Example = () => {
+  const [showModal, setShowModal] = useState(false);
+  return <Center>
+      <Button onPress={() => setShowModal(true)}>Button</Button>
+      <Modal isOpen={showModal} onClose={() => setShowModal(false)}>
+        <Modal.Content maxWidth="400px">
+          <Modal.CloseButton />
+          <Modal.Header>Contact Us</Modal.Header>
+          <Modal.Body>
+            <FormControl>
+              <FormControl.Label>Name</FormControl.Label>
+              <Input />
+            </FormControl>
+            <FormControl mt="3">
+              <FormControl.Label>Email</FormControl.Label>
+              <Input />
+            </FormControl>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button.Group space={2}>
+              <Button variant="ghost" colorScheme="blueGray" onPress={() => {
+              setShowModal(false);
+            }}>
+                Cancel
+              </Button>
+              <Button onPress={() => {
+              setShowModal(false);
+            }}>
+                Save
+              </Button>
+            </Button.Group>
+          </Modal.Footer>
+        </Modal.Content>
+      </Modal>
+    </Center>;
+};
+
+    export default () => {
+        return (
+          <NativeBaseProvider>
             <Center flex={1} px="3">
                 <Example />
             </Center>
           </NativeBaseProvider>
-    );
-}
-function Example() {
-    const {
-      isOpen,
-      onOpen,
-      onClose
-    } = useDisclose();
-    return <Center>
-        <Button onPress={onOpen}>Actionsheet</Button>
-        <Actionsheet isOpen={isOpen} onClose={onClose}>
-          <Actionsheet.Content>
-            <Box w="100%" h={60} px={4} justifyContent="center">
-              <Text fontSize="16" color="gray.500" _dark={{
-              color: "gray.300"
-            }}>
-                Albums
-              </Text>
-            </Box>
-            <Actionsheet.Item>Delete</Actionsheet.Item>
-            <Actionsheet.Item>Share</Actionsheet.Item>
-            <Actionsheet.Item>Play</Actionsheet.Item>
-            <Actionsheet.Item>Favourite</Actionsheet.Item>
-            <Actionsheet.Item>Cancel</Actionsheet.Item>
-          </Actionsheet.Content>
-        </Actionsheet>
-      </Center>;
-  }
+        );
+    };
