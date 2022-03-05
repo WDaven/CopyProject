@@ -9,20 +9,39 @@ const Example = () => {
       <Modal isOpen={showModal} onClose={() => setShowModal(false)}>
       <Modal.Content maxWidth="350">
           <Modal.CloseButton />
-          <Modal.Header>Return Policy</Modal.Header>
+          <Modal.Header>Filters</Modal.Header>
           <Modal.Body>
           <VStack space={3}>
               <HStack alignItems="center" justifyContent="space-between">
-                <Text fontWeight="medium">Sub Total</Text>
-                <Text color="blueGray.400">$298.77</Text>
+                <Text fontWeight="medium">Location</Text>
               </HStack>
               <HStack alignItems="center" justifyContent="space-between">
-                <Text fontWeight="medium">Tax</Text>
-                <Text color="blueGray.400">$38.84</Text>
+                <Text color="blueGray.400">Select 1 or more</Text>
               </HStack>
               <HStack alignItems="center" justifyContent="space-between">
-                <Text fontWeight="medium">Total Amount</Text>
-                <Text color="green.500">$337.61</Text>
+                <Text fontWeight="medium">Reviews</Text>
+              </HStack>
+              <HStack alignItems="center" justifyContent="space-between">
+                <Text color="blueGray.400">Select the minimum stars (if you select 3,
+                you'll get 3 and up)</Text>
+              </HStack>
+              <HStack alignItems="center" justifyContent="space-between">
+                <Text fontWeight="medium">Roommates</Text>
+              </HStack>
+              <HStack alignItems="center" justifyContent="space-between">
+                <Text color="blueGray.400">Select 1 or more</Text>
+              </HStack>
+              <HStack alignItems="center" justifyContent="space-between">
+                <Text fontWeight="medium">Bathroom</Text>
+              </HStack>
+              <HStack alignItems="center" justifyContent="space-between">
+                <Text color="blueGray.400">Select 1 or more</Text>
+              </HStack>
+              <HStack alignItems="center" justifyContent="space-between">
+                <Text fontWeight="medium">Budget</Text>
+              </HStack>
+              <HStack alignItems="center" justifyContent="space-between">
+                <Text color="blueGray.400">Use slider (price per semester)</Text>
               </HStack>
             </VStack>
           </Modal.Body>
