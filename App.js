@@ -1,35 +1,31 @@
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import HomeScreen from "./screens/Home";
-import SettingsScreen from "./screens/Settings";
-import FilterScreen from "./screens/FilterScreen";
-import { NativeBaseProvider, Text, Box } from 'native-base';
-
+import { NativeBaseProvider } from "native-base";
+import HomeScreen from "./screens/HomeMap";
+import SettingsScreen from "./screens/Favorites";
 
 const Tab = createBottomTabNavigator();
 
+// highlight color in activetintcolor default is 3880FF
 export default function App() {
   return (
-    <NavigationContainer>
-        <Tab.Navigator>
-            <Tab.Screen
-                name="Home"
-                component={HomeScreen}
-                options={{ tabBarIcon: makeIconRender("home") }}
-            />
-            <Tab.Screen
-                name="Settings"
-                component={SettingsScreen}
-                options={{ tabBarIcon: makeIconRender("cog") }}
-            />
-            <Tab.Screen
-                name="FilterScreen"
-                component={FilterScreen}
-                options={{ tabBarIcon: makeIconRender("cog") }}
-            />
-        </Tab.Navigator>
-    </NavigationContainer>
+    <NativeBaseProvider>
+        <NavigationContainer>
+            <Tab.Navigator screenOptions={{ headerShown: false, tabBarActiveTintColor: '#e91e63', }}>
+                <Tab.Screen
+                    name="Search"
+                    component={HomeScreen}
+                    options={{ tabBarIcon: makeIconRender("magnify"), headerShown: false }}
+                />
+                <Tab.Screen
+                    name="Favorites"
+                    component={SettingsScreen}
+                    options={{ tabBarIcon: makeIconRender("heart-outline"), headerShown: false }}
+                />
+            </Tab.Navigator>
+        </NavigationContainer>
+    </NativeBaseProvider>
   );
 }
 
