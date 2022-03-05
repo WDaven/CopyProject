@@ -55,7 +55,7 @@ const Example = () => {
               <Button onPress={() => {
               setShowModal(false);
             }}>
-                Save
+                Apply
               </Button>
             </Button.Group>
           </Modal.Footer>
