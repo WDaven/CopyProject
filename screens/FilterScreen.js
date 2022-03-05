@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Modal, FormControl, Input, Center, NativeBaseProvider } from "native-base";
+import { Button, Modal, VStack, HStack, Text, Radio, Center, NativeBaseProvider } from "native-base";
 import { useState } from "react";
 
 const Example = () => {
@@ -7,18 +7,24 @@ const Example = () => {
   return <Center>
       <Button onPress={() => setShowModal(true)}>Button</Button>
       <Modal isOpen={showModal} onClose={() => setShowModal(false)}>
-        <Modal.Content maxWidth="400px">
+      <Modal.Content maxWidth="350">
           <Modal.CloseButton />
-          <Modal.Header>Contact Us</Modal.Header>
+          <Modal.Header>Return Policy</Modal.Header>
           <Modal.Body>
-            <FormControl>
-              <FormControl.Label>Name</FormControl.Label>
-              <Input />
-            </FormControl>
-            <FormControl mt="3">
-              <FormControl.Label>Email</FormControl.Label>
-              <Input />
-            </FormControl>
+          <VStack space={3}>
+              <HStack alignItems="center" justifyContent="space-between">
+                <Text fontWeight="medium">Sub Total</Text>
+                <Text color="blueGray.400">$298.77</Text>
+              </HStack>
+              <HStack alignItems="center" justifyContent="space-between">
+                <Text fontWeight="medium">Tax</Text>
+                <Text color="blueGray.400">$38.84</Text>
+              </HStack>
+              <HStack alignItems="center" justifyContent="space-between">
+                <Text fontWeight="medium">Total Amount</Text>
+                <Text color="green.500">$337.61</Text>
+              </HStack>
+            </VStack>
           </Modal.Body>
           <Modal.Footer>
             <Button.Group space={2}>
