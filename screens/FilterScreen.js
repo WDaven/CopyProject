@@ -2,6 +2,7 @@ import React from "react";
 import { Button, Box, Modal, Stack, VStack, HStack, Text, Checkbox, Center, Slider, NativeBaseProvider } from "native-base";
 import { useState } from "react";
 import MultiSlider from '@ptomasroos/react-native-multi-slider';
+import { Rating, AirbnbRating } from 'react-native-ratings';
 const Example = () => {
   const [showModal, setShowModal] = useState(false);
   const [locationValues, setLocationValues] = React.useState([]);
@@ -37,6 +38,14 @@ const Example = () => {
               <HStack alignItems="center" justifyContent="space-between">
                 <Text color="blueGray.400">Select the minimum stars (if you select 3,
                 you'll get 3 and up)</Text>
+              
+              </HStack>
+
+              <HStack alignItems="center" justifyContent="space-between">
+              <AirbnbRating />
+
+                
+
               </HStack>
               <HStack alignItems="center" justifyContent="space-between">
                 <Text fontWeight="medium">Roommates</Text>
