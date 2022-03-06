@@ -48,7 +48,7 @@ const Example = () => {
 
               </HStack>
               <HStack alignItems="center" justifyContent="space-between">
-                <Text fontWeight="medium">Roommates</Text>
+                <Text fontWeight="medium">Beds</Text>
               </HStack>
               <HStack alignItems="center" justifyContent="space-between">
                 <Text color="blueGray.400">Select 1 or more</Text>
