@@ -4,14 +4,13 @@ import { useState } from "react";
 import MultiSlider from '@ptomasroos/react-native-multi-slider';
 import { Rating, AirbnbRating } from 'react-native-ratings';
 const Example = () => {
-  const [showModal, setShowModal] = useState(false);
+  const [showModal, setShowModal] = useState(true);
   const [locationValues, setLocationValues] = React.useState([]);
   const [roommateValues, setRoommateValues] = React.useState([]);
   const [bathroomValues, setBathroomValues] = React.useState([]);
   const [onChangeValue, setOnChangeValue] = React.useState(70);
   const [budgetValues, setBudgetValues] = React.useState([0, 5000]);
   return <Center>
-      <Button onPress={() => setShowModal(true)}>Button</Button>
       <Modal isOpen={showModal} onClose={() => setShowModal(false)}>
       <Modal.Content maxWidth="350">
           <Modal.CloseButton />
