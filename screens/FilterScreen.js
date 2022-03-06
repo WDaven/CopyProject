@@ -1,13 +1,14 @@
 import React from "react";
 import { Button, Box, Modal, Stack, VStack, HStack, Text, Checkbox, Center, Slider, NativeBaseProvider } from "native-base";
 import { useState } from "react";
-
+import MultiSlider from '@ptomasroos/react-native-multi-slider';
 const Example = () => {
   const [showModal, setShowModal] = useState(false);
   const [locationValues, setLocationValues] = React.useState([]);
   const [roommateValues, setRoommateValues] = React.useState([]);
   const [bathroomValues, setBathroomValues] = React.useState([]);
   const [onChangeValue, setOnChangeValue] = React.useState(70);
+
   return <Center>
       <Button onPress={() => setShowModal(true)}>Button</Button>
       <Modal isOpen={showModal} onClose={() => setShowModal(false)}>
@@ -82,19 +83,12 @@ const Example = () => {
               </HStack>
               <HStack alignItems="center" justifyContent="space-between">
 
-              <Box alignItems="center" w="100%">
-                <Stack space={4} alignItems="center" w="75%" maxW="300">
-                    <Text textAlign="center">onChangeValue - {onChangeValue}</Text>
-                    <Slider defaultValue={70} colorScheme="cyan" onChange={v => {
-                    setOnChangeValue(Math.floor(v));
-                }} >
-                    <Slider.Track>
-                        <Slider.FilledTrack />
-                    </Slider.Track>
-                    <Slider.Thumb />
-                    </Slider>
-                </Stack>
-                </Box>;
+              <MultiSlider
+              values={[10, 100]}
+              isMarkersSeparated={true}
+              allowOverlap={false}
+              minMarkerOverlapDistance={10}
+                />
 
               </HStack>
             </VStack>
