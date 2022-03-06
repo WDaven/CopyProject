@@ -8,7 +8,7 @@ const Example = () => {
   const [roommateValues, setRoommateValues] = React.useState([]);
   const [bathroomValues, setBathroomValues] = React.useState([]);
   const [onChangeValue, setOnChangeValue] = React.useState(70);
-
+  const [budgetValues, setBudgetValues] = React.useState([0, 5000]);
   return <Center>
       <Button onPress={() => setShowModal(true)}>Button</Button>
       <Modal isOpen={showModal} onClose={() => setShowModal(false)}>
@@ -84,13 +84,23 @@ const Example = () => {
               <HStack alignItems="center" justifyContent="space-between">
 
               <MultiSlider
-              values={[10, 100]}
+              values={[0, 5000]}
               isMarkersSeparated={true}
+              min={0}
+              max={5000}
+              onValuesChange={(values) => setBudgetValues(values)}
+              step={100}
               allowOverlap={false}
               minMarkerOverlapDistance={10}
                 />
-
-              </HStack>
+                </HStack>
+                <HStack>
+                <Text bold>Min: {budgetValues[0]}</Text>
+                </HStack>
+                <HStack>
+                <Text bold>Max: {budgetValues[1]}</Text>
+                </HStack>
+              
             </VStack>
           </Modal.Body>
           <Modal.Footer>
