@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Box, Modal, Stack, VStack, HStack, Text, Checkbox, Center, Slider, NativeBaseProvider } from "native-base";
+import { Box, Modal, Stack, VStack, HStack, Text, Checkbox, Center, Slider, NativeBaseProvider, View, Slide, Button} from "native-base";
 import { useState } from "react";
 import MultiSlider from '@ptomasroos/react-native-multi-slider';
 import { Rating, AirbnbRating } from 'react-native-ratings';
@@ -11,11 +11,13 @@ const Example = () => {
   const [onChangeValue, setOnChangeValue] = React.useState(70);
   const [budgetValues, setBudgetValues] = React.useState([0, 5000]);
   return <Center>
-    <Button
-                    title="Filters"
-                    onPress={() => setShowModal(true)}
-                ></Button>
-      <Modal isOpen={showModal} onClose={() => setShowModal(false)}>
+            <Button
+                    onPress={() => setShowModal(true)}>
+                <Text> Filters </Text>
+                </Button>
+
+
+      <Modal isOpen={showModal} animationType="slide" onClose={() => setShowModal(false)}>
       <Modal.Content maxWidth="350">
           <Modal.CloseButton />
           <Modal.Header>Filters</Modal.Header>
@@ -131,15 +133,15 @@ const Example = () => {
           </Modal.Footer>
         </Modal.Content>
       </Modal>
-    </Center>;
+    </Center>
 };
 
     export default () => {
         return (
           <NativeBaseProvider>
-            <Center flex={1} px="3">
+            <View>
                 <Example />
-            </Center>
+            </View>
           </NativeBaseProvider>
         );
     };
