@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Image, Modal, Stack, VStack, HStack, Text, Checkbox, Center, Slider, NativeBaseProvider, View, Slide, Button, Icon} from "native-base";
+import {IconButton, Box, Image, Modal, Stack, VStack, HStack, Text, Checkbox, Center, Slider, NativeBaseProvider, View, Slide, Button, Icon} from "native-base";
 import { useState } from "react";
 import MultiSlider from '@ptomasroos/react-native-multi-slider';
 import { Rating, AirbnbRating } from 'react-native-ratings';
@@ -11,13 +11,12 @@ const Example = () => {
   const [bathroomValues, setBathroomValues] = React.useState([]);
   const [onChangeValue, setOnChangeValue] = React.useState(70);
   const [budgetValues, setBudgetValues] = React.useState([0, 5000]);
-  return <Center>
-            <Button
-                    onPress={() => setShowModal(true)}>
-                <Text> Filters </Text>
-                </Button>
-
-
+  return (
+      <View>
+        <View alignSelf={'flex-end'}>
+            <IconButton icon={<Icon size="sm" as={MaterialCommunityIcons} name="filter-variant" color='#757575' onPress={() => setShowModal(true)} />} />
+        </View>
+        <Center>
       <Modal isOpen={showModal} animationType="slide" onClose={() => setShowModal(false)}>
       <Modal.Content maxWidth="350">
           <Modal.CloseButton />
@@ -161,7 +160,8 @@ const Example = () => {
         </Modal.Content>
       </Modal>
     </Center>
-};
+    </View>
+  )};
 
     export default () => {
         return (
