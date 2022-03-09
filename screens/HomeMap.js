@@ -12,12 +12,15 @@ const HomeMapScreen = ({ navigation }) => {
     return (
         <View style={{ flex: 1, justifyContent: "center", alignItems: "center", paddingTop:statusBarHeight }}>
             <HStack px="1" py="3"  alignItems="center" w="100%" maxW="400" space={5}>
-                <Input placeholder="Search" variant="filled" 
+                <Input placeholder="Search dorms" variant="filled" 
                     width="85%" borderRadius="10" py="1" px="2" borderWidth="0" 
-                    InputLeftElement={<IconButton icon={<Icon size="sm" as={MaterialCommunityIcons} name="magnify" color='#757575' />} />} 
+                    InputLeftElement={<IconButton icon={<Icon size="sm" as={MaterialCommunityIcons} name="magnify" color='#757575' />}  _pressed = {{bg:'#D3D3D3'}}/>} 
                     InputRightElement={<FilterComponent></FilterComponent>} />
-                    <Icon size="sm" as={MaterialCommunityIcons} name="view-list-outline" color='#757575' onPress={() => navigation.navigate('HomeList')} />
+                    <IconButton icon =
+                        {<Icon size="sm" as={MaterialCommunityIcons} name="view-list-outline" color='#757575'  />} 
+                        onPress={() => navigation.navigate('HomeList')} _pressed = {{bg:'#D3D3D3'}}/>
             </HStack>
+
             
         </View>
 

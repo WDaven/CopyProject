@@ -10,7 +10,7 @@ function DetailScreen({ navigation : { goBack} }) {
         <View style={{ flex: 1, paddingTop:statusBarHeight }}>
             <ScrollView>
                     <HStack alignItems="center">
-                        <IconButton icon={<Icon size="sm" as={MaterialCommunityIcons} name="arrow-left" color='#757575' onPress={() => goBack()} />} />
+                        <IconButton icon={<Icon size="sm" as={MaterialCommunityIcons} name="arrow-left" color='#757575'/>} onPress={() => goBack()} _pressed = {{bg:'#D3D3D3'}}/>
                         <Text color="black" fontSize="20" fontWeight="medium">
                                 Search
                         </Text>
