@@ -11,7 +11,8 @@ import MapComponent from "../components/MapComponent";
 
 const HomeMapScreen = ({ navigation }) => {
     return (
-        <View style={{ flex: 1,  alignItems: "center", paddingTop:statusBarHeight }}>
+
+        <View style={{ alignItems: "center", paddingTop:statusBarHeight }}>
             <HStack px="1" py="3"  alignItems="center" w="100%" maxW="400" space={5}>
                 <Input placeholder="Search dorms" variant="filled" 
                     width="85%" borderRadius="10" py="1" px="2" borderWidth="0" 
@@ -24,6 +25,7 @@ const HomeMapScreen = ({ navigation }) => {
 
             <MapComponent></MapComponent>
         </View>
+
 
     );
 }
