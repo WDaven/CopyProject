@@ -1,41 +1,30 @@
-import { Text, View, ScrollView, Modal, VStack, HStack, Center, NativeBaseProvider } from "react-native";
+import { Text, View, ScrollView } from "react-native";
+import { HStack, IconButton, Icon, Input } from "native-base";
 import { Button } from "native-base";
-import { Checkbox } from "native-base";
 import PreviewPressableTile from "../components/PreviewPressableTile";
-import { StyleSheet, Platform, StatusBar } from "react-native";
 import Constants from 'expo-constants';
 const statusBarHeight = Constants.statusBarHeight
 import React from "react";
-import { useState } from "react";
-import MultiSlider from '@ptomasroos/react-native-multi-slider';
-import { Rating, AirbnbRating } from 'react-native-ratings';
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+
+//InputRightElement={<FilterComponent></FilterComponent>} />
+
 import FilterComponent from "../components/FilterComponent";
 const HomeListScreen = ({ navigation }) => {
     return (
         <View style={{ flex: 1, justifyContent: "center", alignItems: "center", paddingTop:statusBarHeight }}>
             <ScrollView>
-            <Button
-                    onPress={() => navigation.navigate('HomeMap')}
-                >
-                    <Text>Map View</Text>
-                    </Button>
-
-                <FilterComponent>
-
-                </FilterComponent>
-
-            <PreviewPressableTile></PreviewPressableTile>
-            <PreviewPressableTile></PreviewPressableTile>
-            <PreviewPressableTile></PreviewPressableTile>
-            <PreviewPressableTile></PreviewPressableTile>
-            <PreviewPressableTile></PreviewPressableTile>
-            <PreviewPressableTile></PreviewPressableTile>
-            <PreviewPressableTile></PreviewPressableTile>
-            <PreviewPressableTile></PreviewPressableTile>
-            <PreviewPressableTile></PreviewPressableTile>
-            <PreviewPressableTile></PreviewPressableTile>
-            <PreviewPressableTile></PreviewPressableTile>
-            <PreviewPressableTile></PreviewPressableTile>
+                <HStack px="1" py="3"  alignItems="center" w="100%" maxW="400" space={5}>
+                <Input placeholder="Search" variant="filled" 
+                    width="85%" borderRadius="10" py="1" px="2" borderWidth="0" 
+                    InputLeftElement={<IconButton icon={<Icon size="sm" as={MaterialCommunityIcons} name="magnify" color='#757575' />} />} 
+                    InputRightElement={<FilterComponent></FilterComponent>} />
+    
+        <Icon size="sm" as={MaterialCommunityIcons} name="map-legend" color='#757575' onPress={() => navigation.navigate('HomeMap')} />
+            </HStack>
+           
+            <PreviewPressableTile onPress={() => navigation.navigate('DetailScreen')}/>
+            
             </ScrollView>
         </View>
     );

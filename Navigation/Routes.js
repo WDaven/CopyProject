@@ -6,6 +6,7 @@ import HomeMapScreen from '../screens/HomeMap';
 import HomeListScreen from '../screens/HomeList';
 import {createAppContainer} from 'react-navigation'; 
 import FilterScreen from '../screens/FilterScreen';
+import DetailScreen from '../screens/DetailScreen';
 
 const HomeStack = createNativeStackNavigator();
 
@@ -16,7 +17,11 @@ function HomeStackScreen() {
       <HomeStack.Screen name="HomeMap" component={HomeMapScreen} />
       <HomeStack.Screen name="HomeList" component={HomeListScreen} />
       <HomeStack.Screen name="FilterScreen" component={FilterScreen} />
+      <HomeStack.Screen name ="DetailScreen" component={DetailScreen} />
+
     </HomeStack.Navigator>
   );
 }
+
+
 export default HomeStackScreen;
