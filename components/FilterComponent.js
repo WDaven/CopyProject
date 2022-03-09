@@ -14,7 +14,10 @@ const Example = () => {
   return (
       <View>
         <View alignSelf={'flex-end'}>
-            <IconButton icon={<Icon size="sm" as={MaterialCommunityIcons} name="filter-variant" color='#757575' />} onPress={() => setShowModal(true)} _pressed = {{bg:'#D3D3D3'}}/>
+            <IconButton icon=
+                {<Icon size="sm" as={MaterialCommunityIcons} name="filter-variant" color='#757575' />} 
+                onPress={() => setShowModal(true)} _pressed = {{bg:'#D3D3D3'}}
+            />
         </View>
         <Center>
       <Modal isOpen={showModal} animationType="slide" onClose={() => setShowModal(false)}>
