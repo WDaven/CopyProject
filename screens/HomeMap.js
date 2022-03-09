@@ -7,10 +7,11 @@ const statusBarHeight = Constants.statusBarHeight
 import FilterComponent from "../components/FilterComponent";
 import React from "react";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import MapComponent from "../components/MapComponent";
 
 const HomeMapScreen = ({ navigation }) => {
     return (
-        <View style={{ flex: 1, justifyContent: "center", alignItems: "center", paddingTop:statusBarHeight }}>
+        <View style={{ flex: 1,  alignItems: "center", paddingTop:statusBarHeight }}>
             <HStack px="1" py="3"  alignItems="center" w="100%" maxW="400" space={5}>
                 <Input placeholder="Search dorms" variant="filled" 
                     width="85%" borderRadius="10" py="1" px="2" borderWidth="0" 
@@ -21,7 +22,7 @@ const HomeMapScreen = ({ navigation }) => {
                         onPress={() => navigation.navigate('HomeList')} _pressed = {{bg:'#D3D3D3'}}/>
             </HStack>
 
-            
+            <MapComponent></MapComponent>
         </View>
 
     );
