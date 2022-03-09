@@ -20,7 +20,7 @@ const HomeListScreen = ({ navigation }) => {
                     InputLeftElement={<IconButton icon={<Icon size="sm" as={MaterialCommunityIcons} name="magnify" color='#757575' />} />} 
                     InputRightElement={<FilterComponent></FilterComponent>} />
     
-        <Icon size="sm" as={MaterialCommunityIcons} name="map-legend" color='#757575' onPress={() => navigation.navigate('HomeMap')} />
+        <IconButton icon={<Icon size="sm" as={MaterialCommunityIcons} name="map-legend" color='#757575'/>} onPress={() => navigation.navigate('HomeMap')}_pressed = {{bg:'#D3D3D3'}}/>
             </HStack>
            
             <PreviewPressableTile onPress={() => navigation.navigate('DetailScreen')}/>

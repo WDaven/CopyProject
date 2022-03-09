@@ -1,5 +1,5 @@
 import React from "react";
-import {IconButton, Box, Image, Modal, Stack, VStack, HStack, Text, Checkbox, Center, Slider, NativeBaseProvider, View, Slide, Button, Icon} from "native-base";
+import {IconButton, Modal,  VStack, HStack, Text, Checkbox, Center, NativeBaseProvider, View, Button, Icon} from "native-base";
 import { useState } from "react";
 import MultiSlider from '@ptomasroos/react-native-multi-slider';
 import { Rating, AirbnbRating } from 'react-native-ratings';
@@ -14,7 +14,7 @@ const Example = () => {
   return (
       <View>
         <View alignSelf={'flex-end'}>
-            <IconButton icon={<Icon size="sm" as={MaterialCommunityIcons} name="filter-variant" color='#757575' onPress={() => setShowModal(true)} />} />
+            <IconButton icon={<Icon size="sm" as={MaterialCommunityIcons} name="filter-variant" color='#757575' />} onPress={() => setShowModal(true)} _pressed = {{bg:'#D3D3D3'}}/>
         </View>
         <Center>
       <Modal isOpen={showModal} animationType="slide" onClose={() => setShowModal(false)}>
