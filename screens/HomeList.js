@@ -12,7 +12,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import FilterComponent from "../components/FilterComponent";
 const HomeListScreen = ({ navigation }) => {
     return (
-        <View style={{ flex: 1, justifyContent: "center", alignItems: "center", paddingTop:statusBarHeight }}>
+        <View bg='#dcdcdc' style={{ flex: 1, justifyContent: "center", alignItems: "center", paddingTop:statusBarHeight }}>
             <ScrollView>
                 <HStack px="1" py="3"  alignItems="center" w="100%" maxW="400" space={5}>
                 <Input placeholder="Search dorms" variant="filled" 
@@ -24,7 +24,6 @@ const HomeListScreen = ({ navigation }) => {
             </HStack>
            
             <PreviewPressableTile onPress={() => navigation.navigate('DetailScreen')}/>
-            
             </ScrollView>
         </View>
     );
