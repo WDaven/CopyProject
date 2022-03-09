@@ -4,7 +4,7 @@ import { useState } from "react";
 import MultiSlider from '@ptomasroos/react-native-multi-slider';
 import { Rating, AirbnbRating } from 'react-native-ratings';
 import { MaterialCommunityIcons } from "@expo/vector-icons"; 
-const Example = () => {
+const Example = (openModal) => {
   const [showModal, setShowModal] = useState(false);
   const [locationValues, setLocationValues] = React.useState([]);
   const [roommateValues, setRoommateValues] = React.useState([]);
