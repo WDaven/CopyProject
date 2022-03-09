@@ -9,7 +9,7 @@ export default function PreviewPressableTile(props) {
   return ( 
       <Box alignItems="center">
         <Pressable onPress={onPress}>
-          <Box maxW="96" borderWidth="1" borderColor="coolGray.300" shadow="3" bg="coolGray.100" p="5" rounded="8">
+          <Box maxW="96%" borderWidth="1" borderColor="coolGray.300" shadow="3" bg="coolGray.100" p="5" rounded="8">
           <Box>
             <AspectRatio w="100%" ratio={3/1}>
               <Image source={{
