@@ -15,9 +15,9 @@ const HomeListScreen = ({ navigation }) => {
         <View style={{ flex: 1, justifyContent: "center", alignItems: "center", paddingTop:statusBarHeight }}>
             <ScrollView>
                 <HStack px="1" py="3"  alignItems="center" w="100%" maxW="400" space={5}>
-                <Input placeholder="Search" variant="filled" 
+                <Input placeholder="Search dorms" variant="filled" 
                     width="85%" borderRadius="10" py="1" px="2" borderWidth="0" 
-                    InputLeftElement={<IconButton icon={<Icon size="sm" as={MaterialCommunityIcons} name="magnify" color='#757575' />} />} 
+                    InputLeftElement={<IconButton icon={<Icon size="sm" as={MaterialCommunityIcons} name="magnify" color='#757575' />}  _pressed = {{bg:'#D3D3D3'}} />} 
                     InputRightElement={<FilterComponent></FilterComponent>} />
     
         <IconButton icon={<Icon size="sm" as={MaterialCommunityIcons} name="map-legend" color='#757575'/>} onPress={() => navigation.navigate('HomeMap')}_pressed = {{bg:'#D3D3D3'}}/>
