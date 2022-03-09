@@ -15,7 +15,7 @@ export default function App() {
     return (
       <NativeBaseProvider>
           <NavigationContainer>
-              <Tab.Navigator screenOptions={{ headerShown: false, tabBarActiveTintColor: '#3880FF', }}>
+              <Tab.Navigator screenOptions={{ headerShown: false, tabBarActiveTintColor: '#3880FF',tabBarStyle:{backgroundColor: `#f5f5f5`} }}>
                   <Tab.Screen
                       name="Search"
                       component={HomeStackScreen}
