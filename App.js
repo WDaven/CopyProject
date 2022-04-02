@@ -1,14 +1,15 @@
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NativeBaseProvider } from "native-base";
-import HomeScreen from "./screens/HomeMap";
 import SettingsScreen from "./screens/Favorites";
-import FilterScreen from "./screens/FilterScreen";
-import HomeStackScreen from "./Navigation/Routes";
+import HomeStackScreen from "./navigation/Routes";
 
 const Tab = createBottomTabNavigator();
+
+//Please run in android, React Native Maps is not fully supported for web and I need to work on it some.
+//Please run in android, React Native Maps is not fully supported for web and I need to work on it some.
+//Please run in android, React Native Maps is not fully supported for web and I need to work on it some.
 
 // highlight color in activetintcolor default is 3880FF
 export default function App() {
@@ -30,11 +31,11 @@ export default function App() {
           </NavigationContainer>
       </NativeBaseProvider>
     );
-  }
+}
   
-  function makeIconRender(name) {
-      return ({ color, size }) => (
-          <MaterialCommunityIcons name={name} color={color} size={size} />
-      );
-  }
+function makeIconRender(name) {
+    return ({ color, size }) => (
+        <MaterialCommunityIcons name={name} color={color} size={size} />
+    );
+}
   

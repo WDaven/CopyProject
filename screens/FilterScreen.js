@@ -2,13 +2,15 @@ import React from "react";
 import { Button, Box, Modal, Stack, VStack, HStack, Text, Checkbox, Center, Slider, NativeBaseProvider } from "native-base";
 import { useState } from "react";
 import MultiSlider from '@ptomasroos/react-native-multi-slider';
-import { Rating, AirbnbRating } from 'react-native-ratings';
+import StarRating from "react-native-star-rating";
+
 const Example = () => {
   const [showModal, setShowModal] = useState(false);
   const [locationValues, setLocationValues] = React.useState([]);
   const [roommateValues, setRoommateValues] = React.useState([]);
   const [bathroomValues, setBathroomValues] = React.useState([]);
   const [onChangeValue, setOnChangeValue] = React.useState(70);
+  const [favorite, setFavorite] = useState(0);
   const [budgetValues, setBudgetValues] = React.useState([0, 5000]);
   return <Center>
     <Button
@@ -45,7 +47,15 @@ const Example = () => {
               </HStack>
 
               <HStack alignItems="center" justifyContent="space-between">
-              <AirbnbRating />
+              <StarRating
+                                maxStars={5}
+                                rating={favorite}
+                                starSize={40}
+                                emptyStar={"heart-outline"}
+                                fullStar={"heart"}
+                                iconSet={"MaterialCommunityIcons"}s
+                                fullStarColor={"#3880ff"}
+                                selectedStar={(rating) => setFavorite(rating)}/>
 
                 
 

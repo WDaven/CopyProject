@@ -5,30 +5,27 @@ import { NavigationEvents } from "react-navigation";
 //https://housing.gatech.edu/sites/default/files/styles/juicebox_medium/public/building/gallery/cld-bldg.jpg?itok=WmoIH4Ag
 
 export default function PreviewPressableTile(props) {
-  const{onPress} = props;
+  const{onPress, dormName, dormImage, dormRating} = props;
   return ( 
-      <Box alignItems="center">
+      <Box alignItems="center" paddingTop={2}>
         <Pressable onPress={onPress}>
-          <Box maxW="96" borderWidth="1" borderColor="coolGray.300" shadow="3" bg="coolGray.100" p="5" rounded="8">
+          <Box maxW="96" borderWidth="1" borderColor="coolGray.300" bg="coolGray.100" p="5" rounded="8">
           <Box>
             <AspectRatio w="100%" ratio={3/1}>
-              <Image source={{
-              uri: "https://housing.gatech.edu/sites/default/files/styles/juicebox_medium/public/building/gallery/cld-bldg.jpg?itok=WmoIH4Ag"
-            }} alt="image" />
+            {dormImage}
             </AspectRatio>
           </Box>
             <HStack alignItems="center">
               <Badge colorScheme="darkGreen.100" _text={{
               color: "white"
             }} variant="solid" rounded="4">
-                Cloudman
+                {dormName}
               </Badge>
               <Spacer />
-
               <Badge colorScheme ="darkGreen.700" _text={{
               color: "white"
             }} variant="solid" rounded="full">
-                4.8
+                {dormRating}
               </Badge>
 
             </HStack>

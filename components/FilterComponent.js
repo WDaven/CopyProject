@@ -2,7 +2,7 @@ import React from "react";
 import {IconButton, Modal,  VStack, HStack, Text, Checkbox, Center, NativeBaseProvider, View, Button, Icon} from "native-base";
 import { useState } from "react";
 import MultiSlider from '@ptomasroos/react-native-multi-slider';
-import { Rating, AirbnbRating } from 'react-native-ratings';
+import StarRating from "react-native-star-rating";
 import { MaterialCommunityIcons } from "@expo/vector-icons"; 
 const Example = (openModal) => {
   const [showModal, setShowModal] = useState(false);
@@ -11,6 +11,7 @@ const Example = (openModal) => {
   const [bathroomValues, setBathroomValues] = React.useState([]);
   const [onChangeValue, setOnChangeValue] = React.useState(70);
   const [budgetValues, setBudgetValues] = React.useState([0, 5000]);
+  const [favorite, setFavorite] = useState(0);
   return (
       <View>
         <View alignSelf={'flex-end'}>
@@ -60,7 +61,16 @@ const Example = (openModal) => {
                 <VStack space = {0}>
                     <HStack alignItems="center" justifyContent="space-between">
                     <HStack>
-                    <AirbnbRating />
+                    <StarRating
+                                maxStars={5}
+                                rating={favorite}
+                                starSize={40}
+                                emptyStar={"star-outline"}
+                                fullStar={"star"}
+                                iconSet={"MaterialCommunityIcons"}s
+                                fullStarColor={"#3880ff"}
+                                selectedStar={(rating) => setFavorite(rating)}
+                    />
                     <Text color="blueGray.400">& up</Text>
                     </HStack>
                     </HStack>

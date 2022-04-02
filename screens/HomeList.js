@@ -1,40 +1,45 @@
-import { Text, View, ScrollView } from "react-native";
-import { HStack, IconButton, Icon, Input } from "native-base";
-import { Button } from "native-base";
-import PreviewPressableTile from "../components/PreviewPressableTile";
+import { Image, Text, View, ScrollView, VStack, Input, IconButton, Icon, HStack, Button } from "native-base";
+import {ActivityIndicator} from "react-native"
 import Constants from 'expo-constants';
 const statusBarHeight = Constants.statusBarHeight
-import React from "react";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
+import React, { useState, useEffect } from "react";
+import SearchFilter from"../components/SearchFilter";
+import List from "../components/List";
 
-//InputRightElement={<FilterComponent></FilterComponent>} />
-
-import FilterComponent from "../components/FilterComponent";
 const HomeListScreen = ({ navigation }) => {
+    const [searchPhrase, setSearchPhrase] = useState("");
+    const [dormData, setDormData] = useState([]);
+    useEffect(() => {
+        const getData = async () => {
+          const apiResponse = await fetch(
+            "https://us-central1-mas-project-4261.cloudfunctions.net/app/dorms"
+          );
+          const data = await apiResponse.json();
+          setDormData(data);
+        };
+        getData();
+    }, []);
+    const myJson = JSON.stringify({dormData})
     return (
-        <View style={{ paddingTop:statusBarHeight }}>
-            <ScrollView>
-                <HStack px="1" py="3"  alignItems="center" w="100%" maxW="400" space={1}>
-                    <Input placeholder="Search dorms" variant="filled" 
-                        width="85%" borderRadius="10" py="1" px="2" borderWidth="0" 
-                        InputLeftElement={<IconButton icon={<Icon size="sm" as={MaterialCommunityIcons} name="magnify" color='#757575' />}  _pressed = {{bg:'#D3D3D3'}} />} 
-                        InputRightElement={<FilterComponent></FilterComponent>} />
-                    <IconButton icon={<Icon size="md" as={MaterialCommunityIcons} name="map-legend" color='#757575'/>} onPress={() => navigation.navigate('HomeMap')}_pressed = {{bg:'#D3D3D3'}}/>
-                </HStack>
-           
-            <PreviewPressableTile onPress={() => navigation.navigate('DetailScreen')}/>
-            </ScrollView>
+        <View style={{ paddingTop:statusBarHeight }} >
+            <View>
+                <View style={{ width: '100%', alignItems: "center" }} space = {2}>
+                    <SearchFilter onPress={() => navigation.navigate('HomeMap')} _pressed = {{bg:'#D3D3D3'}} abtnTxt = "Go to map view"
+                        searchPhrase={searchPhrase}
+                        setSearchPhrase={setSearchPhrase}
+                    >
+                    </SearchFilter>
+                </View>
+                {/* <Text>{myJson}</Text> */}
+                <View style ={{ alignItems:"center" }}>
+                    {!dormData
+                        ? (<ActivityIndicator size="large" />)
+                        : (<List searchPhrase={searchPhrase} data={dormData}/>)
+                    }
+                </View>
+            </View>
         </View>
     );
 }
-
-
-
-
-
-
-
-
-
 
 export default HomeListScreen;

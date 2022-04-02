@@ -1,258 +1,177 @@
 
-import React, { useState, useRef } from "react";
-import { useWindowDimensions } from 'react-native';
+import React, { useEffect, useState, useRef } from "react";
+import { Pressable } from 'react-native';
+import { useNavigation, useRoute } from "@react-navigation/native";
 import {
     VStack,
     HStack,
-    Button,
-    IconButton,
     Icon,
     Text,
-    Center,
     Box,
     View,
     ScrollView,
-    Image,
-    AspectRatio,
     Divider,
     Avatar,
 } from "native-base";
+import moment from "moment";
 import StarRating from 'react-native-star-rating';
+import PhotoCarousel from "../components/PhotoCarousel";
+import { MaterialCommunityIcons } from "@expo/vector-icons"; 
+import { DetailIcon, ProsConsIcon } from "../components/Icons";
 
-import Constants from 'expo-constants';
-import { MaterialCommunityIcons, Ionicons } from "@expo/vector-icons"; 
-import Carousel from 'react-native-snap-carousel';
-
-// Refactor later
-function DetailScreen({ navigation }) {
+function DetailScreen() {
     const carouselRef = useRef();
-    const { _, width} = useWindowDimensions();
-    const [activeIndex, setActiveIndex] = useState(0);
-    const [carouselItems, setCarouselItems] = useState([
-        {
-            uri: "https://housing.gatech.edu/sites/default/files/styles/juicebox_large/public/building/gallery/cld-bldg.jpg?itok=J5ZkPw2r",
-        },
-        {
-            uri: "https://housing.gatech.edu/sites/default/files/building/gallery/cloudmanbedroom2_w_bedrail_1.jpg",
-        },
-        {
-            uri: "https://housing.gatech.edu/sites/default/files/styles/juicebox_large/public/building/gallery/cloudmankitchen001.gif?itok=SQd8siJc",
-        },
-        {
-            uri: "https://housing.gatech.edu/sites/default/files/styles/juicebox_large/public/building/gallery/cloudmanactivityrm001.gif?itok=WQSMTw-H"
-        }
-    ]);
+    const navigation = useNavigation();
+    const route = useRoute();
+
+    const { name, location, address, images, avg_rating, num_reviews } = route.params;
+    const [reviews, setReviews] = useState([]);
     const [favorite, setFavorite] = useState(0);
-    const renderItem = ({item, index}) => {
-        return (
-            <Box>
-                <AspectRatio w="100%" ratio={16 / 9}>
-                    <Image source={{ uri: item.uri }} alt="Image" />
-                </AspectRatio>
-            </Box>
+    const [activeIndex, setActiveIndex] = useState(0);
+    const [carouselItems, setCarouselItems] = useState(images.map(image => { return { uri: image } }));
+
+    const fetchData = async () => {
+        const document_id = name.toLowerCase().replace(' ', '-');
+        const reviews = await fetch(
+            "https://us-central1-mas-project-4261.cloudfunctions.net/app/dorms/" + document_id + "/reviews"
         );
-    }
+        const reviewsData = await reviews.json();
+        setReviews(reviewsData);
+    };
+
+    useEffect(() => {
+        navigation.setOptions({ headerTitle: name });
+        fetchData();
+    }, [navigation]);
+
     return (
-        <ScrollView marginTop={Constants.statusBarHeight}>
-            <HStack alignItems="center">
-                <IconButton
-                    icon={<Icon as={MaterialCommunityIcons}
-                                size="sm"
-                                name="arrow-left"
-                                color='#757575'/>}
-                    onPress={() => navigation.goBack()}
-                    _pressed = {{bg: '#D3D3D3'}}/>
-                <Text fontSize="lg">
-                    Search
-                </Text>
-            </HStack>
-            <HStack>
-
-                <IconButton
-                    zIndex={1}
-                    position="absolute"
-                    left={0}
-                    top={20}
-                    icon={<Icon as={MaterialCommunityIcons}
-                                size="lg"
-                                name="chevron-left"
-                                color='white'/>}
-                    onPress={() => carouselRef.current.snapToPrev()}/>
-                <Carousel
-                    layout={"default"}
-                    ref={carouselRef}
-                    data={carouselItems}
-                    sliderWidth={width}
-                    itemWidth={width}
-                    renderItem={(item) => renderItem(item)}
-                    onSnapToItem = {(index) => setActiveIndex(index)}/>
-
-                <IconButton
-                    zIndex={1}
-                    position="absolute"
-                    right={0}
-                    top={20}
-                    icon={<Icon as={MaterialCommunityIcons}
-                                size="lg"
-                                name="chevron-right"
-                                color='white'/>}
-                    onPress={() => carouselRef.current.snapToNext()}/>
-            </HStack>
-            <HStack paddingLeft={5}>
-                <VStack>
-                    <Text fontSize="md" color="grey">EAST</Text>
-                    <Text fontSize="xl">CLOUDMAN</Text>
-                    <HStack>
+        <View>
+            <ScrollView>
+                <PhotoCarousel
+                    carouselRef={carouselRef}
+                    carouselItems={carouselItems}
+                    setActiveIndex={setActiveIndex}
+                />
+                <HStack paddingLeft={5}>
+                    <VStack>
+                        <Text fontSize="md" color="grey" marginTop={1}>{location.toUpperCase()}</Text>
+                        <HStack>
+                            <Text fontSize="xl">{name.toUpperCase()}</Text>
+                            <HStack marginLeft={2} paddingTop={2}>
+                                <Icon
+                                    as={MaterialCommunityIcons}
+                                    size="xs"
+                                    color="blue.500"
+                                    name="map-marker-outline"/>
+                                <Text fontSize="xs" color="blue.500">{address}</Text>
+                            </HStack>
+                        </HStack>
+                        <HStack>
+                            <Icon
+                                as={MaterialCommunityIcons}
+                                size="xs"
+                                color="red.500"
+                                marginTop={0.5}
+                                name="star"/>
+                            <Text fontSize="xs" paddingLeft={1} color="red.500">
+                                {(Math.round(10 * avg_rating) / 10).toFixed(1)}
+                            </Text>
+                            <Text fontSize="xs" paddingLeft={1}>({num_reviews})</Text>
+                        </HStack>
+                    </VStack>
+                    <View position={"absolute"} right={5} top={5}>
                         <StarRating
-                            disabled={true}
-                            maxStars={5}
-                            rating={4.5}
-                            starSize={15}
-                            emptyStar={'star-outline'}
-                            fullStar={'star'}
-                            halfStar={'star-half-full'}
-                            iconSet={'MaterialCommunityIcons'}
-                            fullStarColor={'black'}
-                        />
-                        <Text fontSize="xs" marginLeft={2} color="blue.500">2 reviews</Text>
-                    </HStack>
+                            maxStars={1}
+                            rating={favorite}
+                            starSize={40}
+                            emptyStar={require('../star-outline.png')}
+                            fullStar={require('../star.png')}
+                            fullStarColor={"#3880ff"}
+                            selectedStar={() => setFavorite(favorite == 0 ? 1 : 0)}/>
+                    </View>
+                </HStack>
+
+                <Divider my={2}/>
+                <HStack space={4} justifyContent="center">
+                    <DetailIcon name="door" text="2-3 beds"/>
+                    <DetailIcon name="shower" text="1 bathroom"/>
+                </HStack>
+                <Divider my={2}/>
+
+                <Text paddingLeft={5} fontSize="md" bold>Pros</Text>
+                <VStack paddingLeft={8}>
+                    <ProsConsIcon name="library" text="Near CULC"/>
+                    <ProsConsIcon name="football" text="Near Bobby Dodd"/>
                 </VStack>
-                <View position={"absolute"} right={5} top={4}>
-                    <StarRating
-                        maxStars={1}
-                        rating={favorite}
-                        starSize={40}
-                        emptyStar={'heart-outline'}
-                        fullStar={'heart'}
-                        iconSet={'MaterialCommunityIcons'}
-                        fullStarColor={'#3880ff'}
-                        selectedStar={() => setFavorite(favorite == 0 ? 1 : 0)}/>
-                </View>
-            </HStack>
-            <Divider my={2}/>
-            <HStack space={3} justifyContent="center">
-                <Center>
-                    <VStack>
-                        <Center>
-                            <Icon
-                                as={MaterialCommunityIcons}
-                                size="md"
-                                name="door"
-                                color='black'/>
-                            <Text>2-3 people</Text>
-                        </Center>
-                    </VStack>
-                </Center>
-                <Center>
-                    <VStack>
-                        <Center>
-                            <Icon
-                                as={MaterialCommunityIcons}
-                                size="md"
-                                name="shower"
-                                color='black'/>
-                            <Text>Shared</Text>
-                        </Center>
-                    </VStack>
-                </Center>
-            </HStack>
-            <Divider my={2}/>
-            <Text paddingLeft={5} paddingBottom={2} fontSize="md" bold>Pros</Text>
+                <Text paddingLeft={5} fontSize="md" bold>Cons</Text>
+                <VStack paddingLeft={8}>
+                    <ProsConsIcon name="pest" text="Pests"/>
+                    <ProsConsIcon name="barbell" text="Far from CRC"/>
+                </VStack>
 
-            <VStack paddingLeft={7}>
-                <HStack>
-                    <Icon
-                        as={Ionicons}
-                        size="xs"
-                        name="library-outline"
-                        color='grey'
-                        marginTop={1}/>
-                    <Text fontSize="sm" paddingLeft={2} color="grey">Near CULC</Text>
-                </HStack>
-                <HStack>
-                    <Icon
-                        as={Ionicons}
-                        size="xs"
-                        name="american-football-outline"
-                        color='grey'
-                        marginTop={1}/>
-                    <Text fontSize="sm" paddingLeft={2} color="grey">Near Bobby Dodd Stadium</Text>
-                </HStack>
-            </VStack>
+                <Text paddingTop={2} paddingLeft={5} fontSize="md" bold>Reviews</Text>
 
-            <Text paddingLeft={5} paddingBottom={2} fontSize="md" bold>Cons</Text>
-            <VStack paddingLeft={7}>
-                <HStack>
-                    <Icon
-                        as={Ionicons}
-                        size="xs"
-                        name="bug-outline"
-                        color='grey'
-                        marginTop={1}/>
-                    <Text fontSize="sm" paddingLeft={2} color="grey">Pests</Text>
-                </HStack>
-                <HStack>
-                    <Icon
-                        as={Ionicons}
-                        size="xs"
-                        name="barbell-outline"
-                        color='grey'
-                        marginTop={1}/>
-                    <Text fontSize="sm" paddingLeft={2} color="grey">Far from CRC</Text>
-                </HStack>
-            </VStack>
-
-            <Text paddingLeft={5} fontSize="md" bold>Reviews</Text>
-            <VStack paddingLeft={5} marginTop={2}>
-                <HStack>
-                    <Avatar size="xs"></Avatar>
-                    <Text marginLeft={2}>CloudResident</Text>
-                </HStack>
-                <HStack marginTop={1}>
-                    <StarRating
-                        disabled={true}
-                        maxStars={5}
-                        rating={4}
-                        starSize={15}
-                        emptyStar={'star-outline'}
-                        fullStar={'star'}
-                        halfStar={'star-half-full'}
-                        iconSet={'MaterialCommunityIcons'}
-                        fullStarColor={'black'}
+                {reviews.map((review, index) => 
+                    <Review
+                        key={index}
+                        reviewer={review.reviewer}
+                        rating={review.rating}
+                        title={review.title}
+                        date={moment(review.date).format('MMMM YYYY')}
+                        text={review.text}
                     />
-                </HStack>
+                )}
+
                 <VStack>
-                    <Text bold>A little noisy</Text>
-                    <Text color="grey">March 2021</Text>
-                    <Text>It's an okay experience, but noisy</Text>
+                    <View paddingLeft={"5%"} paddingTop={"4%"}>
+                        <Text bold fontSize={"lg"}>Do you live here?</Text>
+                        <Text bold fontSize={"lg"}>Rate & leave a review!</Text>
+                        <HStack>
+                            <View>
+                                <Pressable onPress={() => navigation.navigate('ReviewScreen', {
+                                    name: name
+                                })}>
+                                    <HStack>
+                                        {[...Array(5)].map(_ => <Icon as={MaterialCommunityIcons} size="lg" name="star-outline"/>)}
+                                    </HStack>
+                                </Pressable>
+                            </View>
+                        </HStack>
+                    </View>
                 </VStack>
+
+                <Box my={2} />
+            </ScrollView>
+        </View>
+    );
+}
+
+function Review(props) {
+    const { reviewer, rating, title, date, text } = props;
+    return (
+        <VStack marginTop={2} paddingLeft={5} paddingRight={5}>
+            <HStack>
+                <Avatar size="xs"></Avatar>
+                <Text marginLeft={2}>{reviewer}</Text>
+            </HStack>
+            <HStack marginTop={1}>
+                <StarRating
+                    disabled={true}
+                    maxStars={5}
+                    rating={rating}
+                    starSize={15}
+                    emptyStar={require('../star-outline.png')}
+                    fullStar={require('../star.png')}
+                    halfStar={"star-half-full"}
+                    fullStarColor={"black"}
+                />
+            </HStack>
+            <VStack>
+                <Text bold>{title}</Text>
+                <Text color="grey">{date}</Text>
+                <Text>{text}</Text>
             </VStack>
-            <VStack paddingLeft={5} marginTop={2}>
-                <HStack>
-                    <Avatar size="xs"></Avatar>
-                    <Text marginLeft={2}>RealGeorgeBurdell</Text>
-                </HStack>
-                <HStack marginTop={1}>
-                    <StarRating
-                        disabled={true}
-                        maxStars={5}
-                        rating={5}
-                        starSize={15}
-                        emptyStar={'star-outline'}
-                        fullStar={'star'}
-                        halfStar={'star-half-full'}
-                        iconSet={'MaterialCommunityIcons'}
-                        fullStarColor={'black'}
-                    />
-                </HStack>
-                <VStack>
-                    <Text bold>Amazing</Text>
-                    <Text color="grey">January 2021</Text>
-                    <Text>10/10 would recommend</Text>
-                </VStack>
-            </VStack>
-            <Box my={2}></Box>
-        </ScrollView>
+        </VStack>
     );
 }
 
