@@ -6,6 +6,7 @@ import {
     Text,
 } from "native-base";
 import { MaterialCommunityIcons, Ionicons } from "@expo/vector-icons";
+import React from "react";
 
 const IconMapping = {
     "library": [Ionicons, "library-outline"],

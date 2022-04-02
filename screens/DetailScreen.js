@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState, useRef } from "react";
 import { Pressable } from 'react-native';
 import { useNavigation, useRoute } from "@react-navigation/native";
@@ -18,6 +17,7 @@ import StarRating from 'react-native-star-rating';
 import PhotoCarousel from "../components/PhotoCarousel";
 import { MaterialCommunityIcons } from "@expo/vector-icons"; 
 import { DetailIcon, ProsConsIcon } from "../components/Icons";
+import { NavigationEvents } from '@react-navigation/native';
 
 function DetailScreen() {
     const carouselRef = useRef();
@@ -84,8 +84,8 @@ function DetailScreen() {
                             maxStars={1}
                             rating={favorite}
                             starSize={40}
-                            emptyStar={require('../star-outline.png')}
-                            fullStar={require('../star.png')}
+                            emptyStar={require('../cards-heart-outline.png')}
+                            fullStar={require('../cards-heart.png')}
                             fullStarColor={"#3880ff"}
                             selectedStar={() => setFavorite(favorite == 0 ? 1 : 0)}/>
                     </View>

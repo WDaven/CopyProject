@@ -1,3 +1,4 @@
+import React from "react";
 import Carousel from 'react-native-snap-carousel';
 import { useWindowDimensions } from 'react-native';
 import { MaterialCommunityIcons } from "@expo/vector-icons"; 

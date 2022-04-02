@@ -1,6 +1,6 @@
 import React from "react";
 import {Heading, AspectRatio, Pressable, Text, Box, HStack, Spacer, Flex, Badge, Center, NativeBaseProvider, Image } from "native-base";
-import { NavigationEvents } from "react-navigation";
+import { NavigationEvents } from '@react-navigation/native';
 //cloudman dorm image
 //https://housing.gatech.edu/sites/default/files/styles/juicebox_medium/public/building/gallery/cld-bldg.jpg?itok=WmoIH4Ag
 

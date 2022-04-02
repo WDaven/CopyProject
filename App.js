@@ -3,7 +3,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NativeBaseProvider } from "native-base";
 import SettingsScreen from "./screens/Favorites";
-import HomeStackScreen from "./navigation/Routes";
+import HomeStackScreen from "./Navigation/Routes";
 
 const Tab = createBottomTabNavigator();
 
