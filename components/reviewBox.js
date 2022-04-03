@@ -1,5 +1,5 @@
 import React from "react";
-import { TextArea, Box  } from "native-base";
+import { TextArea } from "native-base";
 
 
 const ReviewBox = ({userReview, setUserReview}) => {

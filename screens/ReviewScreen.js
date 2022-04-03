@@ -59,8 +59,9 @@ function ReviewScreen({ navigation }) {
                                 maxStars={5}
                                 rating={rating}
                                 starSize={40}
-                                emptyStar={"star-outline"}
-                                fullStar={"star"}
+                                emptyStar={require('../star-outline.png')}
+                                fullStar={require('../star.png')}
+                                halfStar={"star-half-full"}
                                 iconSet={"MaterialCommunityIcons"}s
                                 fullStarColor={"#3880ff"}
                                 selectedStar={(rating) => setRating(rating)}/>
