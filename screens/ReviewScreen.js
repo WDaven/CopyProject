@@ -61,8 +61,7 @@ function ReviewScreen({ navigation }) {
                                 starSize={40}
                                 emptyStar={require('../star-outline.png')}
                                 fullStar={require('../star.png')}
-                                halfStar={"star-half-full"}
-                                iconSet={"MaterialCommunityIcons"}s
+                                iconSet={"MaterialCommunityIcons"}
                                 fullStarColor={"#3880ff"}
                                 selectedStar={(rating) => setRating(rating)}/>
                 </View>

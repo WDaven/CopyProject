@@ -5,21 +5,14 @@ const statusBarHeight = Constants.statusBarHeight
 import React, { useState, useEffect } from "react";
 import SearchFilter from"../components/SearchFilter";
 import List from "../components/List";
+import { useNavigation, useRoute } from "@react-navigation/native";
 
-const HomeListScreen = ({ navigation }) => {
+function HomeListScreen ()  {
     const [searchPhrase, setSearchPhrase] = useState("");
-    const [dormData, setDormData] = useState([]);
-    useEffect(() => {
-        const getData = async () => {
-          const apiResponse = await fetch(
-            "https://us-central1-mas-project-4261.cloudfunctions.net/app/dorms"
-          );
-          const data = await apiResponse.json();
-          setDormData(data);
-        };
-        getData();
-    }, []);
-    const myJson = JSON.stringify({dormData})
+    const navigation = useNavigation();
+    const route = useRoute();
+    const { dormData } = route.params;
+
     return (
         <View style={{ paddingTop:statusBarHeight }} >
             <View>
@@ -30,8 +23,7 @@ const HomeListScreen = ({ navigation }) => {
                     >
                     </SearchFilter>
                 </View>
-                {/* <Text>{myJson}</Text> */}
-                <View style ={{ alignItems:"center" }}>
+                <View style ={{ alignItems:"center" }} height='100%'>
                     {!dormData
                         ? (<ActivityIndicator size="large" />)
                         : (<List searchPhrase={searchPhrase} data={dormData}/>)
