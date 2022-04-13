@@ -1,10 +1,11 @@
+import React from "react";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NativeBaseProvider } from "native-base";
 import SettingsScreen from "./screens/Favorites";
 import HomeStackScreen from "./Navigation/Routes";
-import React from 'react';
+
 const Tab = createBottomTabNavigator();
 
 //Please run in android, React Native Maps is not fully supported for web and I need to work on it some.
